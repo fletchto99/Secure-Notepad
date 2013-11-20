@@ -1,3 +1,3 @@
-#TODO
+#Secure Notepad
 
-Used to make games in java.
+Save your important text files securely.
