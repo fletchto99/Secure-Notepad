@@ -103,7 +103,7 @@ public class JFontChooser extends JComponent {
 	private ResourceBundle messageCatalog = ResourceBundle.getBundle(
 			JFontChooser.class.getName() + "Messages", getLocale());
 
-	protected String _(String key) {
+	protected String myString(String key) {
 		String value = key;
 		try {
 			value = messageCatalog.getString(key);
@@ -398,7 +398,7 @@ public class JFontChooser extends JComponent {
 	}
 
 	public String getVersionString() {
-		return _("Version");
+		return myString("Version");
 	}
 
 	/**
@@ -583,7 +583,7 @@ public class JFontChooser extends JComponent {
 			this.dialog = dialog;
 			putValue(Action.DEFAULT, ACTION_NAME);
 			putValue(Action.ACTION_COMMAND_KEY, ACTION_NAME);
-			putValue(Action.NAME, _(ACTION_NAME));
+			putValue(Action.NAME, myString(ACTION_NAME));
 		}
 
 		@Override
@@ -605,7 +605,7 @@ public class JFontChooser extends JComponent {
 			this.dialog = dialog;
 			putValue(Action.DEFAULT, ACTION_NAME);
 			putValue(Action.ACTION_COMMAND_KEY, ACTION_NAME);
-			putValue(Action.NAME, _(ACTION_NAME));
+			putValue(Action.NAME, myString(ACTION_NAME));
 		}
 
 		@Override
@@ -618,7 +618,7 @@ public class JFontChooser extends JComponent {
 	protected JDialog createDialog(Component parent) {
 		Frame frame = new Frame();
 		frame.setIconImage(new BufferedImage(1, 1, BufferedImage.TYPE_INT_ARGB));
-		JDialog dialog = new JDialog(frame, _("SelectFont"), true);
+		JDialog dialog = new JDialog(frame, myString("SelectFont"), true);
 
 		Action okAction = new DialogOKAction(dialog);
 		Action cancelAction = new DialogCancelAction(dialog);
@@ -678,7 +678,7 @@ public class JFontChooser extends JComponent {
 			p.add(getFontFamilyTextField(), BorderLayout.NORTH);
 			p.add(scrollPane, BorderLayout.CENTER);
 
-			JLabel label = new JLabel(_("FontName"));
+			JLabel label = new JLabel(myString("FontName"));
 			label.setHorizontalAlignment(SwingConstants.LEFT);
 			label.setHorizontalTextPosition(SwingConstants.LEFT);
 			label.setLabelFor(getFontFamilyTextField());
@@ -709,7 +709,7 @@ public class JFontChooser extends JComponent {
 			p.add(getFontStyleTextField(), BorderLayout.NORTH);
 			p.add(scrollPane, BorderLayout.CENTER);
 
-			JLabel label = new JLabel(_("FontStyle"));
+			JLabel label = new JLabel(myString("FontStyle"));
 			label.setHorizontalAlignment(SwingConstants.LEFT);
 			label.setHorizontalTextPosition(SwingConstants.LEFT);
 			label.setLabelFor(getFontStyleTextField());
@@ -739,7 +739,7 @@ public class JFontChooser extends JComponent {
 			p.add(getFontSizeTextField(), BorderLayout.NORTH);
 			p.add(scrollPane, BorderLayout.CENTER);
 
-			JLabel label = new JLabel(_("FontSize"));
+			JLabel label = new JLabel(myString("FontSize"));
 			label.setHorizontalAlignment(SwingConstants.LEFT);
 			label.setHorizontalTextPosition(SwingConstants.LEFT);
 			label.setLabelFor(getFontSizeTextField());
@@ -754,7 +754,7 @@ public class JFontChooser extends JComponent {
 	protected JPanel getSamplePanel() {
 		if (samplePanel == null) {
 			Border titledBorder = BorderFactory.createTitledBorder(
-					BorderFactory.createEtchedBorder(), _("Sample"));
+					BorderFactory.createEtchedBorder(), myString("Sample"));
 			Border empty = BorderFactory.createEmptyBorder(5, 10, 10, 10);
 			Border border = BorderFactory.createCompoundBorder(titledBorder,
 					empty);
@@ -772,7 +772,7 @@ public class JFontChooser extends JComponent {
 		if (sampleText == null) {
 			Border lowered = BorderFactory.createLoweredBevelBorder();
 
-			sampleText = new JTextField(_("SampleString"));
+			sampleText = new JTextField(myString("SampleString"));
 			sampleText.setBorder(lowered);
 			sampleText.setPreferredSize(new Dimension(300, 100));
 		}
@@ -792,10 +792,10 @@ public class JFontChooser extends JComponent {
 		if (fontStyleNames == null) {
 			int i = 0;
 			fontStyleNames = new String[4];
-			fontStyleNames[i++] = _("Plain");
-			fontStyleNames[i++] = _("Bold");
-			fontStyleNames[i++] = _("Italic");
-			fontStyleNames[i++] = _("BoldItalic");
+			fontStyleNames[i++] = myString("Plain");
+			fontStyleNames[i++] = myString("Bold");
+			fontStyleNames[i++] = myString("Italic");
+			fontStyleNames[i++] = myString("BoldItalic");
 		}
 		return fontStyleNames;
 	}
