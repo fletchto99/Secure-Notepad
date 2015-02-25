@@ -14,25 +14,25 @@ import me.matt.notepad.SecureNotepad;
 
 public class ImageUtil {
 
-	public static BufferedImage getBufferedImage(final String resource)
-			throws IOException {
-		final File imageFile = new File(resource);
-		return ImageIO.read(imageFile);
-	}
+    public static BufferedImage getBufferedImage(final String resource)
+            throws IOException {
+        final File imageFile = new File(resource);
+        return ImageIO.read(imageFile);
+    }
 
-	public static Image getImage(final String resource) {
-		try {
-			return Toolkit.getDefaultToolkit().getImage(
-					getResourceURL(resource));
-		} catch (final Exception e) {
-		}
-		return null;
-	}
+    public static Image getImage(final String resource) {
+        try {
+            return Toolkit.getDefaultToolkit().getImage(
+                    ImageUtil.getResourceURL(resource));
+        } catch (final Exception e) {
+        }
+        return null;
+    }
 
-	public static URL getResourceURL(final String path)
-			throws MalformedURLException {
-		return SecureNotepad.RUNNING_FROM_JAR ? SecureNotepad.class
-				.getResource("/" + path) : new File(path).toURI().toURL();
-	}
+    public static URL getResourceURL(final String path)
+            throws MalformedURLException {
+        return SecureNotepad.RUNNING_FROM_JAR ? SecureNotepad.class
+                .getResource("/" + path) : new File(path).toURI().toURL();
+    }
 
 }
