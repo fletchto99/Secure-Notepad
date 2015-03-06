@@ -5,6 +5,7 @@ import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -13,7 +14,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import me.matt.notepad.util.Base64;
 import me.matt.notepad.util.StringUtils;
 
 public class SecurityUtility {
@@ -24,8 +24,8 @@ public class SecurityUtility {
         final Key key = SecurityUtility.generateKey(password);
         final Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, key, iv);
-        return StringUtils.newStringUtf8(cipher.doFinal(Base64
-                .decodeBase64(text)));
+        return StringUtils.newStringUtf8(cipher.doFinal(Base64.getDecoder()
+                .decode(text)));
     }
 
     public static String encrypt(final String text, final String password)
@@ -34,8 +34,8 @@ public class SecurityUtility {
         final Key key = SecurityUtility.generateKey(password);
         final Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key, iv);
-        return Base64.encodeBase64String((cipher.doFinal(StringUtils
-                .getBytesUtf8(text))));
+        return Base64.getEncoder().encodeToString(
+                (cipher.doFinal(StringUtils.getBytesUtf8(text))));
     }
 
     private static SecretKey generateKey(final String password)
@@ -49,4 +49,5 @@ public class SecurityUtility {
         return new SecretKeySpec(factory.generateSecret(spec).getEncoded(),
                 "AES");
     }
+
 }
